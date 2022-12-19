@@ -66,10 +66,19 @@
     // console.table(ageSort);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // const category = document.querySelector(".mw-category");
+    // const links = category.querySelectorAll("a");
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const separateByComma = people.map(person => person.split(','));
+    const result = separateByComma.sort((a,b) => {
+      const nameA = a[1].toUpperCase();
+      const nameB = b[1].toUpperCase();
+      return nameA < nameB ? -1 : 1;
+    });
+    console.log(result);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
