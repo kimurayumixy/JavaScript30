@@ -43,7 +43,7 @@
   </div>
 
   <script>
-    function debounce(func, wait = 20, immediate = true) {
+    function debounce(func, wait = 10, immediate = true) {
       var timeout;
       return function() {
         var context = this, args = arguments;
@@ -58,6 +58,26 @@
       };
     }
 
+    const images = document.querySelectorAll(".slide-in");
+    function scrollSlide (e) {
+      images.forEach( image => {
+      // half way throuh the image
+        const slideInt = (window.scrollY + window.innerHeight) - image.height / 2;
+        console.log(slideInt);
+      // height to the bottom of the image
+        const imageBottom = image.offsetTop + image.height;
+        const isHalfImage = slideInt > image.offsetTop;
+        const isNotScrollPassed = window.scrollY < imageBottom;
+        if (isHalfImage && isNotScrollPassed) {
+          image.classList.add("active");
+        } else {
+          image.classList.remove("active");
+        }
+      })
+    }
+
+    document.addEventListener("scroll", debounce(scrollSlide));
+
   </script>
 
   <style>
@@ -68,11 +88,11 @@
       font-size: 20px;
       font-weight: 200;
     }
-    
+
     body {
       margin: 0;
     }
-    
+
     *, *:before, *:after {
       box-sizing: inherit;
     }
@@ -107,7 +127,7 @@
     .align-left.slide-in {
       transform: translateX(-30%) scale(0.95);
     }
-    
+
     .align-right.slide-in {
       transform: translateX(30%) scale(0.95);
     }
