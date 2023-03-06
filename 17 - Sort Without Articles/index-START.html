@@ -48,17 +48,15 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
-function strip(string){
-  return string.replace(/^a |an |the /i, '').trim();
+function strip() {
+  // remove "the" and "a" from the string using iteration
+  // start from or " The " or " A " or " An "
+  bands.forEach( element => {
+    element.replace("^The", "")
+  })
+  // sort the array alphabetically
 }
-const sortedBands = bands.sort(function(a, b) {
-  return strip(a) > strip(b) ? 1 : -1;
-});
-
-console.log(sortedBands);
-document.querySelector("#bands").innerHTML = sortedBands.map( band =>
-  `<li>${band}</li>`
-).join('')
+console.log(strip());
 </script>
 
 </body>
